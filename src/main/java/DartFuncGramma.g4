@@ -2,7 +2,7 @@ grammar DartFuncGramma;
 
 import BaseDartGramma,DartStatementGramma;
 
-function : type  identifier  '(' parameters?  ')'  '{' functionBody '}' ;
+function : type WS* identifier '(' parameters? ')' '{' functionBody '}';
 
 functionBody: statement* ;
 
