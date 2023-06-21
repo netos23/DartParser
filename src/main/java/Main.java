@@ -13,13 +13,13 @@ public class Main {
 
         CharStream input = CharStreams.fromStream(inputStream);
 
-        DartGrammaLexer lexer = new DartGrammaLexer(input);
+        BaseDartLexer lexer = new BaseDartLexer(input);
 
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
-        DartGrammaParser parser = new DartGrammaParser(tokens);
+        DartFuncGrammaParser parser = new DartFuncGrammaParser(tokens);
 
-        ParseTree tree = parser.main();
+
         System.out.println(tree.toStringTree(parser));
 
     }
