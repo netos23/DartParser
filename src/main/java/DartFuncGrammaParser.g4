@@ -60,7 +60,7 @@ CBC;
 
 classBody: (function | field  | constructor | namedConstructor | getter | setter)*;
 
-import_: IMPORT_ S
+import_: IMPORT_ VALUE;
 
 topLavelStatement: (function | declaration | class)*;
 

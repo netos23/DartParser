@@ -117,6 +117,8 @@ DD: '..';
 DDD: '...';
 DDDQ: '...?';
 
+VALUE: NUMBER | StringDQ | StringSQ | BOOL_LITERAL;
+
 NUMBER : DIGIT+ ( '.' DIGIT+ )?;
 
 fragment LETTER : 'a' .. 'z' | 'A' .. 'Z' ;
@@ -155,4 +157,4 @@ fragment StringContentTDQ : ~('\\' | '"') | '"' ~'"' | '""' ~'"' ;
 fragment StringContentTSQ : '\'' ~'\'' | '\'\'' ~'\'' | . ;
 
 
-VALUE: NUMBER | StringDQ | StringSQ | BOOL_LITERAL;
+
