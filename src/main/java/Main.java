@@ -19,8 +19,7 @@ public class Main {
 
         DartFuncGrammaParser parser = new DartFuncGrammaParser(tokens);
 
-
-        parser.topLavelStatement();
+        parser.topLavelStatement().accept(new DartSemanticVisitor());
 
     }
 
