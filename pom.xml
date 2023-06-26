@@ -33,7 +33,7 @@
                     <sourceDirectory>${basedir}</sourceDirectory>
                     <includes>
                         <include>BaseDartLexer.g4</include>
-                        <include><DartFuncGramma></DartFuncGramma>.g4</include>
+                        <include>DartFuncGrammaParser.g4</include>
                     </includes>
                     <visitor>true</visitor>
                     <listener>true</listener>

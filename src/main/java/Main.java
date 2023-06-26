@@ -20,7 +20,7 @@ public class Main {
         DartFuncGrammaParser parser = new DartFuncGrammaParser(tokens);
 
 
-        System.out.println(tree.toStringTree(parser));
+        parser.topLavelStatement();
 
     }
 
