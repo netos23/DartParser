@@ -1,32 +1,14 @@
-class Person {
-  String name;
-  int age;
+class Main {
 
-  // default constructor
-  Person(String name, [int age = 18]) {
-    this.name = name;
-    this.age = age;
-  }
+  int a;
 
-  // named constructor
-  Person.guest() {
-    name = 'Guest';
-    age = 18;
-  }
 
   void showOutput() {
-    print('this.name');
-    print('this.age');
+    int b = 20;
+    a = 10;
+    print (a);
+
   }
+
 }
 
-void main() {
-  var person1 = Person('Jack');
-  Person person2 = Person('Jill', 15);
-
-  person1.showOutput();
-  person2.showOutput();
-
-  var person3 = Person.guest();
-  person3.showOutput();
-}

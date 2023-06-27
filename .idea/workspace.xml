@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1f3754cf-647a-4bd8-88d1-0d5b5b4af74d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/DartWalker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reflection/Field.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/reflection/Method.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Jasper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/debug.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/jasmin.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/make.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DartParser.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/consolestorage/flexible_search_region.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/consolestorage/solr_region.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hybrisProjectSettings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/toolchains.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/BaseDartLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/BaseDartLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/BaseDartLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserBaseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DartFuncGrammaParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DartFuncGrammaParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Person.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Person.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/func.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/func.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2RhVi1o5xp8P9Aiw0qfaxjqSLVf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.antlr.intellij.plugin.configdialogs.ANTLRv4ProjectSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\resources" />
+      <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="DartParser" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1f3754cf-647a-4bd8-88d1-0d5b5b4af74d" name="Changes" comment="" />
+      <created>1687702423705</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687702423705</updated>
+      <workItem from="1687702424870" duration="925000" />
+      <workItem from="1687712349577" duration="600000" />
+      <workItem from="1687770199695" duration="233000" />
+      <workItem from="1687770439222" duration="933000" />
+      <workItem from="1687771379993" duration="1383000" />
+      <workItem from="1687772809471" duration="4000" />
+      <workItem from="1687772822552" duration="356000" />
+      <workItem from="1687773185680" duration="1968000" />
+      <workItem from="1687776497100" duration="4599000" />
+      <workItem from="1687852625859" duration="22236000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="lexer" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="ctx.stop" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

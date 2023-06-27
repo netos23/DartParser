@@ -1,4 +1,4 @@
-// Generated from /Users/nikitamorozov/IdeaProjects/prodaction/DartParser/src/main/java/DartFuncGrammaParser.g4 by ANTLR 4.12.0
+// Generated from C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java\DartFuncGrammaParser.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -171,6 +171,12 @@ public interface DartFuncGrammaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitClassBody(DartFuncGrammaParser.ClassBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DartFuncGrammaParser#import_}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImport_(DartFuncGrammaParser.Import_Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link DartFuncGrammaParser#topLavelStatement}.
 	 * @param ctx the parse tree

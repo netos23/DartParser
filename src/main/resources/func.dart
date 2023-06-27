@@ -3,3 +3,8 @@ void showOutput() {
   print(a  , b );
 }
 
+void showOutput() {
+  print(224);
+  print(a  , b );
+}
+

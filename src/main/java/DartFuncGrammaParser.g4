@@ -1,5 +1,3 @@
-
-
 parser grammar DartFuncGrammaParser;
 
 options { tokenVocab=BaseDartLexer; }
@@ -42,9 +40,9 @@ expression : term ((PL|MINUS) term)* | increment;
 
 increment: (IDENTIFIER MM) | (MM IDENTIFIER) | (IDENTIFIER PLPL)| (PLPL IDENTIFIER);
 term : factor ((ST|SL) factor)* ;
-factor : functionalCall |NUMBER | VALUE   | ('(' expression ')')  | IDENTIFIER;
+factor : functionalCall | NUMBER | VALUE   | ('(' expression ')')  | IDENTIFIER;
 
-values : (IDENTIFIER | VALUE) ((C (IDENTIFIER | VALUE))*)?;
+values : (IDENTIFIER | VALUE | expression) ((C (IDENTIFIER | VALUE | expression))*)?;
 
 field: declaration SC;
 

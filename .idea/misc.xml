@@ -4,21 +4,10 @@
     <option name="perGrammarGenerationSettings">
       <list>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/main/java/DartFuncGrammaParser.g4" />
+          <option name="fileName" value="*" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="" />
-          <option name="libDir" value="" />
-          <option name="encoding" value="" />
-          <option name="pkg" value="" />
-          <option name="language" value="" />
-          <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="true" />
-        </PerGrammarGenerationSettings>
-        <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/main/java/BaseDartLexer.g4" />
-          <option name="autoGen" value="true" />
-          <option name="outputDir" value="$PROJECT_DIR$/gen" />
-          <option name="libDir" value="" />
+          <option name="outputDir" value="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\gen" />
+          <option name="libDir" value="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\java" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
@@ -35,13 +24,5 @@
       </list>
     </option>
   </component>
-  <component name="NimProjectFileService" has-nim-files="false" />
-  <component name="PWA">
-    <option name="enabled" value="true" />
-    <option name="wasEnabledAtLeastOnce" value="true" />
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK" />
-  <component name="ProjectType">
-    <option name="id" value="jpab" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="20" project-jdk-type="JavaSDK" />
 </project>

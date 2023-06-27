@@ -9,7 +9,8 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        FileInputStream inputStream = new FileInputStream("src/main/resources/func.dart");
+        String className = "Person";
+        FileInputStream inputStream = new FileInputStream(String.format("src/main/resources/%s.dart", className));
 
         CharStream input = CharStreams.fromStream(inputStream);
 
@@ -19,8 +20,12 @@ public class Main {
 
         DartFuncGrammaParser parser = new DartFuncGrammaParser(tokens);
 
+        ParseTree tree = parser.topLavelStatement();
+        ParseTreeWalker walker = new ParseTreeWalker();
+        String outputPath = String.format("src/main/resources/%s", className);
+        walker.walk(new DartWalker(new File(outputPath)), tree);
 
-        parser.topLavelStatement();
+
 
     }
 

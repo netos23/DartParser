@@ -1,4 +1,4 @@
-// Generated from /Users/nikitamorozov/IdeaProjects/prodaction/DartParser/src/main/java/DartFuncGrammaParser.g4 by ANTLR 4.12.0
+// Generated from C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java\DartFuncGrammaParser.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -200,6 +200,13 @@ public class DartFuncGrammaParserBaseVisitor<T> extends AbstractParseTreeVisitor
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitClassBody(DartFuncGrammaParser.ClassBodyContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitImport_(DartFuncGrammaParser.Import_Context ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,4 @@
-// Generated from /Users/nikitamorozov/IdeaProjects/prodaction/DartParser/src/main/java/BaseDartLexer.g4 by ANTLR 4.12.0
+// Generated from C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java\BaseDartLexer.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
