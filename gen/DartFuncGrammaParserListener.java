@@ -1,8 +1,6 @@
 // Generated from C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java\DartFuncGrammaParser.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
-import java.io.IOException;
-
 /**
  * This interface defines a complete listener for a parse tree produced by
  * {@link DartFuncGrammaParser}.
@@ -189,6 +187,26 @@ public interface DartFuncGrammaParserListener extends ParseTreeListener {
 	 */
 	void exitExpression(DartFuncGrammaParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DartFuncGrammaParser#signPM}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignPM(DartFuncGrammaParser.SignPMContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DartFuncGrammaParser#signPM}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignPM(DartFuncGrammaParser.SignPMContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DartFuncGrammaParser#signTL}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignTL(DartFuncGrammaParser.SignTLContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DartFuncGrammaParser#signTL}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignTL(DartFuncGrammaParser.SignTLContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DartFuncGrammaParser#increment}.
 	 * @param ctx the parse tree
 	 */
@@ -262,7 +280,7 @@ public interface DartFuncGrammaParserListener extends ParseTreeListener {
 	 * Enter a parse tree produced by {@link DartFuncGrammaParser#class}.
 	 * @param ctx the parse tree
 	 */
-	void enterClass(DartFuncGrammaParser.ClassContext ctx) ;
+	void enterClass(DartFuncGrammaParser.ClassContext ctx);
 	/**
 	 * Exit a parse tree produced by {@link DartFuncGrammaParser#class}.
 	 * @param ctx the parse tree

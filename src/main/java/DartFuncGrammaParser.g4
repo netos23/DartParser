@@ -36,10 +36,12 @@ declaration: (LATE_? typeDeclaration assignment) | (LATE_? typeDeclaration IDENT
 
 assignment: IDENTIFIER EQ expression ;
 
-expression : term ((PL|MINUS) term)* | increment;
+expression : term (signPM term)* | increment;
+signPM : (PL|MINUS);
+signTL : (ST|SL);
 
 increment: (IDENTIFIER MM) | (MM IDENTIFIER) | (IDENTIFIER PLPL)| (PLPL IDENTIFIER);
-term : factor ((ST|SL) factor)* ;
+term : factor (signTL factor)* ;
 factor : functionalCall | NUMBER | VALUE   | ('(' expression ')')  | IDENTIFIER;
 
 values : (IDENTIFIER | VALUE | expression) ((C (IDENTIFIER | VALUE | expression))*)?;

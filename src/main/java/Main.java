@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         String className = "Person";
-        FileInputStream inputStream = new FileInputStream(String.format("src/main/resources/%s.dart", className));
+        FileInputStream inputStream = new FileInputStream(String.format("src/main/java/test/%s.dart", className));
 
         CharStream input = CharStreams.fromStream(inputStream);
 
@@ -22,7 +22,7 @@ public class Main {
 
         ParseTree tree = parser.topLavelStatement();
         ParseTreeWalker walker = new ParseTreeWalker();
-        String outputPath = String.format("src/main/resources/%s", className);
+        String outputPath = String.format("src/main/java/test/%s", className);
         walker.walk(new DartWalker(new File(outputPath)), tree);
 
 

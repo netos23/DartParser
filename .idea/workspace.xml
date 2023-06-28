@@ -5,38 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f3754cf-647a-4bd8-88d1-0d5b5b4af74d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DartWalker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/reflection/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/reflection/Method.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Jasper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/debug.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/jasmin.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/make.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DartParser.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/consolestorage/flexible_search_region.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/consolestorage/solr_region.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/hybrisProjectSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/toolchains.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/BaseDartLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/BaseDartLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/BaseDartLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/Person.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/Simple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/gen/DartFuncGrammaParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/DartFuncGrammaParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/DartFuncGrammaParserBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/DartFuncGrammaParserBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/DartFuncGrammaParserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gen/DartFuncGrammaParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/gen/DartFuncGrammaParserVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DartFuncGrammaParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DartFuncGrammaParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DartWalker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DartWalker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Person.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Person.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/func.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/func.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reflection/Method.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reflection/Method.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Jasper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Jasper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Person.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Person.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Person.j" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Person.j" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Simple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Simple.j" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Simple.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/debug.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/debug.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/func.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/func.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/jasmin.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/jasmin.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/make.bat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/make.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,33 +63,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.antlr.intellij.plugin.configdialogs.ANTLRv4ProjectSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/JohnyTwoJacket/IdeaProjects/DartParser/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.antlr.intellij.plugin.configdialogs.ANTLRv4ProjectSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\resources" />
+      <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\java\test" />
       <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\java" />
+      <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="DartParser" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Simple (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Simple" />
+      <module name="DartParser" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Simple" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.Simple" />
       <module name="DartParser" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -105,6 +114,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Simple (1)" />
+        <item itemvalue="Application.Simple" />
       </list>
     </recent_temporary>
   </component>
@@ -125,7 +136,7 @@
       <workItem from="1687772822552" duration="356000" />
       <workItem from="1687773185680" duration="1968000" />
       <workItem from="1687776497100" duration="4599000" />
-      <workItem from="1687852625859" duration="22236000" />
+      <workItem from="1687852625859" duration="40013000" />
     </task>
     <servers />
   </component>
@@ -159,11 +170,15 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="ctx.stop" />
+        <watch expression="((ArrayList)term.children).elementData" custom="java.util.ArrayList" />
       </configuration>
     </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DartParser$Main.ic" NAME="Main Coverage Results" MODIFIED="1687960385391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

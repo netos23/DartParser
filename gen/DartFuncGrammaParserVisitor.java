@@ -118,6 +118,18 @@ public interface DartFuncGrammaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(DartFuncGrammaParser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DartFuncGrammaParser#signPM}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSignPM(DartFuncGrammaParser.SignPMContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DartFuncGrammaParser#signTL}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSignTL(DartFuncGrammaParser.SignTLContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DartFuncGrammaParser#increment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
