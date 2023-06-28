@@ -19,17 +19,15 @@ public class Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         DartFuncGrammaParser parser = new DartFuncGrammaParser(tokens);
+  //      parser.topLavelStatement().accept(new DartSemanticVisitor());
 
-<<<<<<< HEAD
         ParseTree tree = parser.topLavelStatement();
         ParseTreeWalker walker = new ParseTreeWalker();
         String outputPath = String.format("src/main/java/test/%s", className);
         walker.walk(new DartWalker(new File(outputPath)), tree);
 
 
-=======
-        parser.topLavelStatement().accept(new DartSemanticVisitor());
->>>>>>> b24f925eacdf76a5e4b9131b36c6fdc1c84eb630
+
 
     }
 

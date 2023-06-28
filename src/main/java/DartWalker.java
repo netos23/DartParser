@@ -1,4 +1,5 @@
 import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -106,45 +107,9 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
             writer.append(String.format("   .limit locals    16\n"));
 
             // есть объективная причина, почему это сделано так убого
-            // нам нужно как-то считать порядковый номер переменной, чтобы
+            // нам нужно как-то считать порядковый номер переменной, чтобы хранить их в storage
             for (DartFuncGrammaParser.StatementContext statement : ctx.block().statement()) {
-                if (statement.assignment() != null) {
-                    assigment(statement);
-                } else if (statement.declaration() != null) {
-                    // почему это здесь?
-                    // потому что декларация в методе и в классе - разная
-                    // в классе нужно еще добавлять все переменные в дефолтный конструктор
-                    String var;
-                    if (statement.declaration().IDENTIFIER() == null) {
-                        var = statement.declaration().assignment().IDENTIFIER().getText();
-                    } else {
-                        var = statement.declaration().IDENTIFIER().getText();
-                    }
-                    if (fields.containsKey(name)) {
-                        throw new Exception("Такая переменная уже существует");
-                    }
 
-                    String varType = statement.declaration().typeDeclaration().type().getText().substring(0, 1).toUpperCase();
-
-                    if (fields.containsKey(var) || inScopeFields.containsKey(var)) {
-                        throw new Exception("Такая переменная уже существует");
-                    } else {
-                        inScopeFields.put(var, new Field(varType, String.valueOf(i), new ArrayList<>()));
-                        if (statement.declaration().assignment() != null) {
-
-                            writer.append(String.format("   bipush    %s\n", countValue(statement.declaration().assignment().expression())));
-                            if (i <= 3) {
-                                writer.append(String.format("   istore_%d\n", i));
-                            } else {
-                                writer.append(String.format("   istore    %d\n", i)); // по идее istore x должен работать и для i<3
-                            }
-                            i++;
-                            //  в локальном скопе имя поля - это номер в хранилище
-                        }
-
-                    }
-
-                }
             }
             writer.flush();
         } catch (Exception e) {
@@ -159,15 +124,13 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
         if (field != null) {
             // fix is type is different
             writer.append("   aload_0\n");
-            String value = countValue(statement.assignment().expression());
-            writer.append(String.format("   bipush    %s\n", value));
+
             writer.append(String.format("   putfield              %s/%s %s   \n", className,
                     field.getName(), field.getType()));
             writer.flush();
         } else if (inScopeFields.get(var) != null) {
             field = inScopeFields.get(var);
-            String value = countValue(statement.assignment().expression());
-            writer.append(String.format("   bipush    %s\n", value));
+
             writer.append(String.format("   istore             %s  \n",
                     field.getName()));
             writer.flush();
@@ -177,11 +140,70 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
     }
 
 
-    public String countValue(DartFuncGrammaParser.ExpressionContext expression) {
-        // берем за базу то, что этот метод является первым вхождением во все дерево expression
-        // мы берем term - простейшее выражение
-        // сразу смотрим на тип, от него и будем плясать дальше
-        return expression.term(0).factor(0).VALUE().getText();  // пока так
+    public void countValue(DartFuncGrammaParser.ExpressionContext expression) {
+        // Берем за базу то, что этот метод является первым вхождением во все дерево expression.
+        // Мы проходимся по всему, посещаем их, если надо делаем это рекурсивно
+        // Тут надо не забыть инкремент обработать
+        expression(expression);
+
+    }
+
+    public void expression(DartFuncGrammaParser.ExpressionContext expression) {
+        for (int i = 0; i < expression.term().size(); i++) {
+            DartFuncGrammaParser.TermContext term = expression.term().get(i);
+            term(term);
+            if (i != 0) {
+                try {
+                    writer.append(String.format("   %s \n", expression.signPM().get(i - 1).PL() == null ? "isub" : "iadd"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        }
+    }
+
+    public void term(DartFuncGrammaParser.TermContext term) {
+        // проходимся по всем factor
+        // если это просто factor оставляем число
+        // если это выражение, считаем его
+        // финальный стек любого term должен выглядеть как
+        // знак2
+        // значение3
+        // знак1
+        // значение2
+        // значение1
+        // То есть после этого в стеке остается значение
+        // которое потом и присваивается
+        try {
+            for (int i = 0; i < term.factor().size(); i++) {
+                DartFuncGrammaParser.FactorContext factor = term.factor(i);
+                if (factor.IDENTIFIER() != null) {
+                    Field field = inScopeFields.get(factor.IDENTIFIER().getText());
+                    if (field == null) {
+                        field = fields.get(factor.IDENTIFIER().getText());
+                        writer.append(String.format("   aload_0     \n"));
+                        writer.append(String.format("   getfield     %s/%s %s\n", className, field.getName(), field.getType()));
+                    } else {
+                        writer.append(String.format("   iload     %s\n", field.getName()));
+                    }
+                    System.out.println(factor.IDENTIFIER().getText());
+                } else if (factor.VALUE() != null) {
+                    writer.append(String.format("   ldc     %s\n", factor.VALUE().getText()));
+                    System.out.println(factor.VALUE().getText());
+                } else if (factor.expression() != null) {
+                    expression(factor.expression()); // нейминг на уровне
+                    // на уровне говна
+                }
+                if (i != 0) {
+                    writer.append(String.format("   %s \n", term.signTL(i - 1).SL() == null ? "imul" : "idiv"));
+
+                }
+            }
+        } catch (Exception e) {
+
+        }
+
     }
 
     @Override
@@ -191,6 +213,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
             writer.append("return\n"); //FIXME
             writer.append(".end method\n\n");
             writer.flush();
+            i = 1;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -303,6 +326,8 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void enterTypeDeclaration(DartFuncGrammaParser.TypeDeclarationContext ctx) {
+
+
         super.enterTypeDeclaration(ctx);
     }
 
@@ -313,6 +338,48 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void enterDeclaration(DartFuncGrammaParser.DeclarationContext ctx) {
+        // здесь мы просто запихиваем то, что осталось в стеке от countValue()
+        // потому что в методе и в классе - разная
+        // в классе нужно еще добавлять все переменные в дефолтный конструктор
+        try {
+
+            String name;
+            if (ctx.IDENTIFIER() == null) {
+                name = ctx.assignment().IDENTIFIER().getText();
+            } else {
+                name = ctx.IDENTIFIER().getText();
+            }
+            if (fields.containsKey(name)) {
+                throw new Exception("Такая переменная уже существует");
+            }
+            if (fields.containsKey(name) || inScopeFields.containsKey(name)) {
+                throw new Exception("Такая переменная уже существует");
+            } // FIX IT
+            String varType = ctx.typeDeclaration().type().getText().substring(0, 1).toUpperCase();
+
+            RuleContext parent = ctx.parent;
+            if (parent instanceof DartFuncGrammaParser.FieldContext) {
+
+            } else if (parent instanceof DartFuncGrammaParser.StatementContext) {
+                inScopeFields.put(name, new Field(varType, String.valueOf(i), new ArrayList<>()));
+                if (ctx.assignment() != null) {
+                    countValue(ctx.assignment().expression());
+                    if (i <= 3) {
+                        writer.append(String.format("   istore_%d\n", i));
+                    } else {
+                        writer.append(String.format("   istore    %d\n", i)); // по идее istore x должен работать и для i<3
+                    }
+                    i++;
+                    //  в локальном скопе имя поля - это номер в хранилище
+                }
+
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
         super.enterDeclaration(ctx);
     }
 
@@ -335,33 +402,33 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
     public void enterExpression(DartFuncGrammaParser.ExpressionContext ctx) {
         // сразу надо сказать, почему мы делаем проход так убого
         // потому что нам важна взаимосвязь между номером term и знака
-        for (int i = 0; i < ctx.term().size(); i++) {
-            DartFuncGrammaParser.TermContext term = ctx.term().get(i);
-            if (term.factor().size() != 1){
-                continue; // если в term несколько значений обрабатываем их непосредственно входом в term
-            }
-            DartFuncGrammaParser.FactorContext factor = term.factor(0); // нам нужно знать индекс, чтобы потом взять знак
-            if (factor.VALUE() != null) {  //
-                // запихиваем в стек
-                System.out.println(factor.VALUE().getText());
-            } else if (factor.IDENTIFIER() != null) {
-                System.out.println(factor.IDENTIFIER().getText());
-            }
-            if (i != 0) {
-                System.out.println(ctx.signPM().get(i - 1).MINUS() == null ? '+' : '-');
-            }
-
-        }
+//        for (int i = 0; i < ctx.term().size(); i++) {
+//            DartFuncGrammaParser.TermContext term = ctx.term().get(i);
+//            if (term.factor().size() != 1){
+//                continue; // если в term несколько значений обрабатываем их непосредственно входом в term
+//            }
+//            DartFuncGrammaParser.FactorContext factor = term.factor(0); // нам нужно знать индекс, чтобы потом взять знак
+//            if (factor.VALUE() != null) {  //
+//                // запихиваем в стек
+//                System.out.println(factor.VALUE().getText());
+//            } else if (factor.IDENTIFIER() != null) {
+//                System.out.println(factor.IDENTIFIER().getText());
+//            }
+//            if (i != 0) {
+//                System.out.println(ctx.signPM().get(i - 1).MINUS() == null ? '+' : '-');
+//            }
+//
+//        }
         super.enterExpression(ctx);
     }
 
     @Override
     public void exitExpression(DartFuncGrammaParser.ExpressionContext ctx) {
-        for (DartFuncGrammaParser.SignPMContext pm : ctx.signPM()) {
-            // при выходе мы заносим знаки в стек
-            // System.out.println(pm.MINUS() == null ? "+" : "-");
-            // это такой гавнокод
-        }
+//        for (DartFuncGrammaParser.SignPMContext pm : ctx.signPM()) {
+//            // при выходе мы заносим знаки в стек
+//            // System.out.println(pm.MINUS() == null ? "+" : "-");
+//            // это такой гавнокод
+//        }
         super.exitExpression(ctx);
     }
 
@@ -404,19 +471,19 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void exitTerm(DartFuncGrammaParser.TermContext ctx) {
-        if (ctx.factor().size() == 1) return;
-        for (int i = 0; i < ctx.factor().size(); i++) {
-            if (ctx.factor().get(i).VALUE()!=null){
-                System.out.println(ctx.factor().get(i).VALUE());
-            } else if (ctx.factor().get(i).IDENTIFIER()!=null){
-                System.out.println(ctx.factor().get(i).IDENTIFIER());
-            }
-            // если это что-то сложнее, чем обычная переменная или число/строка,
-            // то это отдается на откуп входу в другой term или expression
-            if (i!=0) {
-                System.out.println(ctx.signTL(i-1).getText());
-            }
-        }
+//        if (ctx.factor().size() == 1) return;
+//        for (int i = 0; i < ctx.factor().size(); i++) {
+//            if (ctx.factor().get(i).VALUE()!=null){
+//                System.out.println(ctx.factor().get(i).VALUE());
+//            } else if (ctx.factor().get(i).IDENTIFIER()!=null){
+//                System.out.println(ctx.factor().get(i).IDENTIFIER());
+//            }
+//            // если это что-то сложнее, чем обычная переменная или число/строка,
+//            // то это отдается на откуп входу в другой term или expression
+//            if (i!=0) {
+//                System.out.println(ctx.signTL(i-1).getText());
+//            }
+//        }
         super.exitTerm(ctx);
     }
 
