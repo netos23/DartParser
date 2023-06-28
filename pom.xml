@@ -30,6 +30,7 @@
                 <artifactId>antlr4-maven-plugin</artifactId>
                 <version>4.12.0</version>
                 <configuration>
+                    <outputDirectory>gen</outputDirectory>
                     <sourceDirectory>${basedir}</sourceDirectory>
                     <includes>
                         <include>BaseDartLexer.g4</include>
@@ -40,6 +41,7 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <id>antlr</id>
                         <goals>
                             <goal>antlr4</goal>
                         </goals>
