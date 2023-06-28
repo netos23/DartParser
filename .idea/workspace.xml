@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f3754cf-647a-4bd8-88d1-0d5b5b4af74d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/test/Square.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DartWalker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DartWalker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Person.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/Person.dart" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Person.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/Person.j" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Person.j" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/Simple.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Simple.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/Simple.j" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Simple.j" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/Simple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/Simple.j" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/Simple.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Simple.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +71,7 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\java\test" />
       <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\java" />
+      <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser" />
       <recent name="C:\Users\JohnyTwoJacket\IdeaProjects\DartParser\src\main\resources" />
     </key>
   </component>
@@ -121,7 +122,7 @@
       <workItem from="1687772822552" duration="356000" />
       <workItem from="1687773185680" duration="1968000" />
       <workItem from="1687776497100" duration="4599000" />
-      <workItem from="1687852625859" duration="47172000" />
+      <workItem from="1687852625859" duration="57811000" />
     </task>
     <servers />
   </component>
@@ -152,6 +153,15 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/DartWalker.java</url>
+          <line>308</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="ctx.stop" />

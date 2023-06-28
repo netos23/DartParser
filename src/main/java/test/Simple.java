@@ -1,15 +1,28 @@
+
 public class Simple {
 
-    int c;
+
+    int c = 10;
 
 
     public void show(){
-        int a = 10;
-        int b = 70123414 + 104124 * (204124 + 3041241 + 40412412) + 60412421 * a * 804124214;
+        int a =12;
+        int b;
+
+
+
     }
     public static void main(String[] args) {
-        int a = 12;
+        int a = 10;
+        int b;
+        if (a < 12){
+            b = 14;
+        }
+        b = 70 + 10 * (a + 30 + 40) + 60 * a * 80;
+        System.out.println(b);
+
     }
+
 
 
 

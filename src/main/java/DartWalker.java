@@ -124,13 +124,13 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
         if (field != null) {
             // fix is type is different
             writer.append("   aload_0\n");
-
+            countValue(statement.assignment().expression());
             writer.append(String.format("   putfield              %s/%s %s   \n", className,
                     field.getName(), field.getType()));
             writer.flush();
         } else if (inScopeFields.get(var) != null) {
             field = inScopeFields.get(var);
-
+            countValue(statement.assignment().expression());
             writer.append(String.format("   istore             %s  \n",
                     field.getName()));
             writer.flush();
@@ -276,6 +276,13 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void enterStatement(DartFuncGrammaParser.StatementContext ctx) {
+        if (ctx.assignment() != null){
+            try {
+                assigment(ctx);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         super.enterStatement(ctx);
     }
 
@@ -296,11 +303,33 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void enterIf(DartFuncGrammaParser.IfContext ctx) {
+        try {
+            countValue(ctx.condition().expression(0));
+            countValue(ctx.condition().expression(1));
+            String CMP = ctx.condition().CMP().getText();
+            if (CMP.equals("==")) {
+                writer.append("   if_icmpne             LABEL0x7\n");
+            }
+            if (CMP.equals("<")) {
+                writer.append("   if_icmpge             LABEL0x7\n");
+            }
+            if (CMP.equals(">")) {
+                writer.append("   if_icmple             LABEL0x7\n");
+            }
+        } catch (Exception e) {
+
+        }
+
         super.enterIf(ctx);
     }
 
     @Override
     public void exitIf(DartFuncGrammaParser.IfContext ctx) {
+        try {
+            writer.append("LABEL0x7:\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         super.exitIf(ctx);
     }
 
@@ -510,25 +539,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void enterField(DartFuncGrammaParser.FieldContext ctx) {
-        try {
-            String name;
-            if (ctx.declaration().IDENTIFIER() == null) {
-                name = ctx.declaration().assignment().IDENTIFIER().getText();
-            } else {
-                name = ctx.declaration().IDENTIFIER().getText();
-            }
-            if (fields.containsKey(name)) {
-                throw new Exception("Такая переменная уже существует");
-            }
-            String type = ctx.declaration().typeDeclaration().type().getText().substring(0, 1).toUpperCase(Locale.ROOT);
-            writer.append(String.format(".field     %s %s\n",
-                    name,
-                    type));
-            writer.flush();
-            fields.put(name, new Field(type, name, new ArrayList<>()));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
         super.enterField(ctx);
     }
 
@@ -564,7 +575,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
             writer.append(String.format(".source    %s.java\n", className));
             writer.append(String.format(".class     public %s\n", className));
             writer.append(".super     java/lang/Object\n");
-
+            generateEmptyConstruct(ctx);
             writer.flush();
 
         } catch (IOException e) {
@@ -575,19 +586,53 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
         super.enterClass(ctx);
     }
 
-    public void generateEmptyConstruct() {
+    public void generateEmptyConstruct(DartFuncGrammaParser.ClassContext ctx) {
         try {
+            for (DartFuncGrammaParser.FieldContext field : ctx.classBody().field()) {
+                String name;
+                if (field.declaration().IDENTIFIER() != null) {
+                    name = field.declaration().IDENTIFIER().getText();
+                } else {
+                    name = field.declaration().assignment().IDENTIFIER().getText();
+                }
+
+                String type = field.declaration().typeDeclaration().type().getText().substring(0, 1).toUpperCase(Locale.ROOT);
+
+                writer.append(String.format(".field   %s %s\n", name, type));
+            }
             writer.append(".method                  public <init>()V\n" +
-                    "   .limit stack          1\n" +
-                    "   .limit locals         1\n" +
+                    "   .limit stack          16\n" +
+                    "   .limit locals         16\n" +
                     "   .line                 1\n" +
                     "   aload_0\n" +
                     "   invokespecial         java/lang/Object/<init>()V\n");
             // здесь идет инициализация всех полей
+            for (DartFuncGrammaParser.FieldContext field : ctx.classBody().field()) {
+                if (field.declaration().assignment() != null) {
+                    writer.append(String.format("   aload_0\n"));
+                    String name;
+                    name = field.declaration().assignment().IDENTIFIER().getText();
+                    if (fields.get(name) != null) {
+                        throw new Exception("Переменная уже существует");
+                    }
+                    countValue(field.declaration().assignment().expression());
+                    String type = field.declaration().typeDeclaration().type().getText().substring(0, 1).toUpperCase(Locale.ROOT);
+                    fields.put(name, new Field(type, name, new ArrayList<>()));
+                    writer.append(String.format("   putfield %s/%s %s\n", className, name, type));
+                } else {
+                    String name = field.declaration().IDENTIFIER().getText();
+                    if (fields.get(name) != null) {
+                        throw new Exception("Переменная уже существует");
+                    }
+                    String type = field.declaration().typeDeclaration().type().getText().substring(0, 1).toUpperCase(Locale.ROOT);
+                    fields.put(name, new Field(type, name, new ArrayList<>()));
+                }
+
+            }
             writer.append(
                     "   return\n" +
                             ".end method\n\n");
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -598,7 +643,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
             if (!methods.containsKey("main")) {
                 throw new Exception("main функция не найдена");
             }
-            generateEmptyConstruct();
+
             writer.flush();
         } catch (Exception e) {
             throw new RuntimeException(e);
