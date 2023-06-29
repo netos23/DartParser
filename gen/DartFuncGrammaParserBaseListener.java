@@ -40,6 +40,18 @@ public class DartFuncGrammaParserBaseListener implements DartFuncGrammaParserLis
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterClassCall(DartFuncGrammaParser.ClassCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClassCall(DartFuncGrammaParser.ClassCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterOptionalParametr(DartFuncGrammaParser.OptionalParametrContext ctx) { }
 	/**
 	 * {@inheritDoc}

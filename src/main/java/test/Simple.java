@@ -5,22 +5,26 @@ public class Simple {
     int c = 10;
 
 
-    public void show(){
-        int a =12;
-        int b;
+    public void show(int n){
 
-
-
+            System.out.println(n + c);
+            show(n - 1);
+            rec();
     }
-    public static void main(String[] args) {
-        int a = 10;
-        int b;
-        if (a < 12){
-            b = 14;
-        }
-        b = 70 + 10 * (a + 30 + 40) + 60 * a * 80;
-        System.out.println(b);
 
+    public void rec(){
+        int n =1;
+        if (n != 10){
+
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int n = 12 - 18 * (7 - 6) + 1;
+
+        Simple person = new Simple();
+        person.show(n);
     }
 
 

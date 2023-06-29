@@ -22,6 +22,12 @@ public interface DartFuncGrammaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParameter(DartFuncGrammaParser.ParameterContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DartFuncGrammaParser#classCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassCall(DartFuncGrammaParser.ClassCallContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DartFuncGrammaParser#optionalParametr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

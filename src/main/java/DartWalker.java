@@ -23,6 +23,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
     Map<String, Field> inScopeFields = new HashMap<>();
 
     int i = 1; // счетчик для local storage, я не даун честно
+    int labelI = 7; // счетчик регистров
 
     public DartWalker(File file) throws IOException {
         this.file = file;
@@ -90,27 +91,33 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
         try {
             String type = ctx.VOID_() == null ? ctx.type().getText().substring(0, 1).toUpperCase() : "V";
             String name = ctx.IDENTIFIER().getText();
-            String params = ctx.parameters() == null ? "" : ctx.parameters().getText();
+            String params = "";
+            if (ctx.parameters() != null) {
+                for (DartFuncGrammaParser.ParameterContext parameter : ctx.parameters().parameter()) {
+                    // каждый параметр еще надо в скоп добавлять
+                    String paramType = parameter.type().getText().substring(0, 1).toUpperCase();
+                    String paramName = parameter.IDENTIFIER().getText();
+                    inScopeFields.put(paramName, new Field(paramType, String.valueOf(i), new ArrayList<>()));
+                    i++;
+                    params += paramType;
+                }
+            }
             // нужно определять сигнатуру метода
             // например int foo(int a, int b) будет foo(II)I
             if (methods.containsKey(name)) {
                 throw new Exception("Такая функция уже существует");
             } else {
-                methods.put(name, new Method(name, type, new ArrayList<>()));
+                methods.put(name, new Method(name, type, params));
             }
             if (name.equals("main")) {
                 writer.append(".method                  public static main([Ljava/lang/String;)V\n");
             } else {
-                writer.append(String.format(".method    public %s()%s\n", name, type));
+                writer.append(String.format(".method    public %s(%s)%s\n", name, params, type));
             }
             writer.append(String.format("   .limit stack    16\n"));
             writer.append(String.format("   .limit locals    16\n"));
 
-            // есть объективная причина, почему это сделано так убого
-            // нам нужно как-то считать порядковый номер переменной, чтобы хранить их в storage
-            for (DartFuncGrammaParser.StatementContext statement : ctx.block().statement()) {
 
-            }
             writer.flush();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -244,23 +251,39 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
     @Override
     public void enterFunctionalCall(DartFuncGrammaParser.FunctionalCallContext ctx) {
         try {
-
+            if (ctx.parent instanceof DartFuncGrammaParser.ClassCallContext){
+                return;
+            }
             if (ctx.IDENTIFIER().getText().equals("print")) {
                 writer.append("   getstatic             java/lang/System/out Ljava/io/PrintStream;\n");
                 // разная логика, если переменная в скопе или нет
-                String var = ctx.values().IDENTIFIER(0).getText();
-
-                if (inScopeFields.get(var) != null) {
-                    String name = inScopeFields.get(var).getName();
-                    String type = inScopeFields.get(var).getType();
-                    writer.append(String.format("   iload              %s\n", name));
-                } else {
-                    String name = fields.get(var).getName();
-                    String type = fields.get(var).getType();
-                    writer.append("   aload              0\n");
-                    writer.append(String.format("   getfield              %s/%s %s\n", className, name, type));
+                if (ctx.values() != null) {
+                    for (int i = 0; i < ctx.values().expression().size(); i++)
+                        countValue(ctx.values().expression(i));
                 }
+
                 writer.append("   invokevirtual         java/io/PrintStream/println(I)V\n");
+            } else {
+
+                String methodName = ctx.IDENTIFIER().getText();
+                // проверка на то, что вызываемый метод - констуктор
+                if (methodName.equals(className)){
+                    return;
+                }
+                writer.append(String.format("   aload_0\n"));
+                Method method = methods.get(methodName);
+                if (ctx.values() != null) {
+                    for (Object value : ctx.values().children) {
+                        if (value instanceof DartFuncGrammaParser.ExpressionContext) {
+                            countValue((DartFuncGrammaParser.ExpressionContext) value);
+                        }
+
+                    }
+                }
+                writer.append(String.format("   invokevirtual %s/%s(%s)%s\n",
+                        this.className,
+                        method.getName(),
+                        method.getSignature(), method.getReturnType()));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -276,7 +299,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
 
     @Override
     public void enterStatement(DartFuncGrammaParser.StatementContext ctx) {
-        if (ctx.assignment() != null){
+        if (ctx.assignment() != null) {
             try {
                 assigment(ctx);
             } catch (Exception e) {
@@ -308,14 +331,18 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
             countValue(ctx.condition().expression(1));
             String CMP = ctx.condition().CMP().getText();
             if (CMP.equals("==")) {
-                writer.append("   if_icmpne             LABEL0x7\n");
+                writer.append(String.format("   if_icmpne             LABEL0x%s\n", labelI));
             }
+//            if (CMP.equals("!=")) {
+//                writer.append(String.format("   if_icmpeq             LABEL0x%s\n", labelI));
+//            }
             if (CMP.equals("<")) {
-                writer.append("   if_icmpge             LABEL0x7\n");
+                writer.append(String.format("   if_icmpge             LABEL0x%s\n", labelI));
             }
             if (CMP.equals(">")) {
-                writer.append("   if_icmple             LABEL0x7\n");
+                writer.append(String.format("   if_icmple             LABEL0x%s\n", labelI));
             }
+
         } catch (Exception e) {
 
         }
@@ -326,7 +353,8 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
     @Override
     public void exitIf(DartFuncGrammaParser.IfContext ctx) {
         try {
-            writer.append("LABEL0x7:\n");
+            writer.append(String.format("LABEL0x%s:\n", labelI));
+            labelI++;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -370,6 +398,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
         // здесь мы просто запихиваем то, что осталось в стеке от countValue()
         // потому что в методе и в классе - разная
         // в классе нужно еще добавлять все переменные в дефолтный конструктор
+
         try {
 
             String name;
@@ -390,8 +419,20 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
             if (parent instanceof DartFuncGrammaParser.FieldContext) {
 
             } else if (parent instanceof DartFuncGrammaParser.StatementContext) {
+
                 inScopeFields.put(name, new Field(varType, String.valueOf(i), new ArrayList<>()));
                 if (ctx.assignment() != null) {
+                    if (ctx.assignment().expression().term().get(0).factor().get(0).functionalCall() != null) {
+                        name = ctx.typeDeclaration().type().IDENTIFIER().getText();
+                        String type = ctx.assignment().expression().term().get(0).factor().get(0).functionalCall().IDENTIFIER().getText();
+                        inScopeFields.put(name, new Field(type, name, new ArrayList<>()));
+                        writer.append(String.format("   new   %s\n", type));
+                        writer.append(String.format("   dup\n"));
+                        writer.append(String.format("   invokespecial         %s/<init>()V\n", type));
+                        writer.append(String.format("   astore         %s\n", i));
+                        i++;
+                        return;
+                    }
                     countValue(ctx.assignment().expression());
                     if (i <= 3) {
                         writer.append(String.format("   istore_%d\n", i));
@@ -399,7 +440,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
                         writer.append(String.format("   istore    %d\n", i)); // по идее istore x должен работать и для i<3
                     }
                     i++;
-                    //  в локальном скопе имя поля - это номер в хранилище
+
                 }
 
             }
@@ -425,6 +466,42 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
     @Override
     public void exitAssignment(DartFuncGrammaParser.AssignmentContext ctx) {
         super.exitAssignment(ctx);
+    }
+
+    @Override
+    public void enterClassCall(DartFuncGrammaParser.ClassCallContext ctx) {
+        // вызов метода у класса нужно просто поместить в стек сам класс и параметры вызываемого метода
+        try {
+            String className = ctx.IDENTIFIER().getText();
+            Field clazz = inScopeFields.get(className);
+            if (clazz != null) {
+                writer.append(String.format("   aload %s\n", clazz.getName()));
+                if (ctx.functionalCall().values() != null) {
+                    for (Object value : ctx.functionalCall().values().children) {
+                        if (value instanceof DartFuncGrammaParser.ExpressionContext) {
+                            countValue((DartFuncGrammaParser.ExpressionContext) value);
+                        }
+
+                    }
+                }
+
+            }
+            String methodName = ctx.functionalCall().IDENTIFIER().getText();
+            Method method = methods.get(methodName);
+            writer.append(String.format("   invokevirtual %s/%s(%s)%s\n",
+                    this.className,
+                    method.getName(),
+                    method.getSignature(), method.getReturnType()));
+        } catch (Exception e) {
+
+        }
+
+        super.enterClassCall(ctx);
+    }
+
+    @Override
+    public void exitClassCall(DartFuncGrammaParser.ClassCallContext ctx) {
+        super.exitClassCall(ctx);
     }
 
     @Override

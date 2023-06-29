@@ -27,6 +27,16 @@ public interface DartFuncGrammaParserListener extends ParseTreeListener {
 	 */
 	void exitParameter(DartFuncGrammaParser.ParameterContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DartFuncGrammaParser#classCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassCall(DartFuncGrammaParser.ClassCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DartFuncGrammaParser#classCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassCall(DartFuncGrammaParser.ClassCallContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DartFuncGrammaParser#optionalParametr}.
 	 * @param ctx the parse tree
 	 */

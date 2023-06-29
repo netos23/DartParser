@@ -5,7 +5,7 @@ options { tokenVocab=BaseDartLexer; }
 type :  IDENTIFIER;
 
 parameter : type IDENTIFIER /*| '[' type IDENTIFIER '=' VALUE ']'*/;
-
+classCall: (VALUE | IDENTIFIER) D functionalCall;
 optionalParametr: type IDENTIFIER EQ VALUE;
 
 optionalParametrs:  optionalParametr  ((C optionalParametr)*)? ;
@@ -19,7 +19,7 @@ namedConstructor :  IDENTIFIER D IDENTIFIER OP parameters? CP  (block | SC) ;
 
 functionalCall: IDENTIFIER OP values? CP;
 
-statement: (functionalCall | assignment | loop | declaration | if);
+statement: (functionalCall | assignment | loop | declaration | if | classCall);
 
 loop : (FOR_ OP declaration SC condition SC expression CP block) |
        (WHILE_ OP condition CP block);
@@ -44,7 +44,7 @@ increment: (IDENTIFIER MM) | (MM IDENTIFIER) | (IDENTIFIER PLPL)| (PLPL IDENTIFI
 term : factor (signTL factor)* ;
 factor : functionalCall | NUMBER | VALUE   | ('(' expression ')')  | IDENTIFIER;
 
-values : (IDENTIFIER | VALUE | expression) ((C (IDENTIFIER | VALUE | expression))*)?;
+values : (expression |IDENTIFIER | VALUE | ) ((C (expression | IDENTIFIER | VALUE))*)?;
 
 field: declaration SC;
 

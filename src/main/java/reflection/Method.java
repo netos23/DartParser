@@ -6,7 +6,7 @@ import java.util.List;
 public class Method {
     String name;
     String returnType;
-    List<String> signature;
+    String  signature;
 
     public String getName() {
         return name;
@@ -24,15 +24,15 @@ public class Method {
         this.returnType = returnType;
     }
 
-    public List<String> getSignature() {
+    public String getSignature() {
         return signature;
     }
 
-    public void setSignature(List<String> signature) {
+    public void setSignature(String signature) {
         this.signature = signature;
     }
 
-    public Method(String name, String returnType, List<String> signature) {
+    public Method(String name, String returnType, String signature) {
         this.name = name;
         this.returnType = returnType;
         this.signature = signature;

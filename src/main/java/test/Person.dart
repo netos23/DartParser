@@ -1,25 +1,33 @@
-class Main {
+class Person {
 
 
   int c = 10;
+  int f = 1;
 
+  void rec(int n) {
+    if (n > 0){
+      n = n - 1;
+      print(n + c);
+      rec(n - 1);
+    };
+  }
 
-  void showOutput() {
-    int a = 10;
-    int b;
-    b = 70 + 10 * (a + 30 + 40) + 60 * c * 80;
-    print(b);
+  void start(int n){
+    c = n;
+
+  }
+
+  void fact(){
+
   }
 
   void main() {
-    int a = 12;
-    int b;
-    if (a == 12){
-      b = 14;
-      print(b);
-    }
-    b = 70 + 10 * (a + 30 + 40) + 60 * a * 80;
-    print(b);
+    int n = 24 - 18 * (7 - 6) + 1;
+    Person person = Person();
+    person.start(n);
+    person.rec(n);
+
+
   }
 
 }
