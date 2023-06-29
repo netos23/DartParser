@@ -272,7 +272,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
                 }
                 writer.append(String.format("   aload_0\n"));
                 Method method = methods.get(methodName);
-                if (ctx.values() != null) {
+                if (ctx.values().children != null) {
                     for (Object value : ctx.values().children) {
                         if (value instanceof DartFuncGrammaParser.ExpressionContext) {
                             countValue((DartFuncGrammaParser.ExpressionContext) value);
@@ -284,6 +284,7 @@ public class DartWalker extends DartFuncGrammaParserBaseListener {
                         this.className,
                         method.getName(),
                         method.getSignature(), method.getReturnType()));
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
